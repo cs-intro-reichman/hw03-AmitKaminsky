@@ -39,8 +39,17 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-    	return 0;
+    	double g = loan / n;
+		double finalBalance = Math.abs(endBalance(loan, rate, n, g));
+		boolean ifZero = (finalBalance <= epsilon && finalBalance >= 0);
+		iterationCounter = 0;
+		while (ifZero == false && g <= loan) {
+			g += epsilon;
+			finalBalance = Math.abs(endBalance(loan, rate, n, g));
+			ifZero = (finalBalance <= epsilon && finalBalance >= 0);
+			iterationCounter++;
+		}
+    	return g;
     }
     
     /**
@@ -51,8 +60,22 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-    	return 0;
+		iterationCounter = 0;
+		double L = loan / n;
+		double H = loan;
+		double M = (L + H) / 2;
+		while (H - L > epsilon) {
+			// Checks if the product is negative or positive
+			// If positive - it means that the payment is too low so the low bound should be higher
+			if (endBalance(loan, rate, n, M) * endBalance(loan, rate, n, L) > 0) {
+				L = M;
+			} else { // If negative - it means that the payment is too high than the high bound should be lower
+				H = M;
+			}
+			M = (L + H) / 2;
+			iterationCounter++;
+		}
+    	return M;
     }
 	
 	/**
@@ -60,7 +83,10 @@ public class LoanCalc {
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
-		// Replace the following statement with your code
-    	return 0;
+		double updatedPayLeft = loan;
+		for (int period = 0; period < n; period++){
+			 updatedPayLeft = (updatedPayLeft - payment) * (1 + rate / 100); 
+		}
+    	return updatedPayLeft;
 	}
 }
