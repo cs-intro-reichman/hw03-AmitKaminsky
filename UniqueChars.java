@@ -14,8 +14,7 @@ public class UniqueChars {
         String noDupStr = "";
         for (int charIndex = 0; charIndex < inputStr.length(); charIndex++) {
             char letter = inputStr.charAt(charIndex);
-            boolean isLetter = (letter >= 'A' && letter <= 'Z') || ((letter >= 'a' && letter <= 'z'));
-            if ((noDupStr.indexOf(letter) == -1 && isLetter) || letter == 32) {
+            if (noDupStr.indexOf(letter) == -1 || letter == 32) {
                 noDupStr += letter;
             }
         }
