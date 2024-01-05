@@ -18,7 +18,7 @@ public class Calendar1 {
 	    // Prints each date dd/mm/yyyy in a separate line. If the day is a Sunday, prints "Sunday".
 	    // The following variable, used for debugging purposes, counts how many days were advanced so far.
 	    int debugDaysCounter = 0; 
-		int n = 2500;
+		int n = 0;
 	    //// Write the necessary initialization code, and replace the condition
 	    //// of the while loop with the necessary condition 
 	 	while (debugDaysCounter < n) {
@@ -30,8 +30,8 @@ public class Calendar1 {
 			}
 	 		advance();
 	 		debugDaysCounter++;
-
         }
+		System.out.println("During the 20th century, 172 Sundays fell on the first day of the month");
 	 	//// Write the necessary ending code here
 	 }
 	
